@@ -2,7 +2,7 @@ const { useState, useEffect } = React
 
 export function TodoFilter({ filterBy, onSetFilterBy }) {
 
-    const [filterByToEdit, setFilterByToEdit] = useState({...filterBy})
+    const [filterByToEdit, setFilterByToEdit] = useState({ ...filterBy })
 
     useEffect(() => {
         // Notify parent
@@ -29,6 +29,10 @@ export function TodoFilter({ filterBy, onSetFilterBy }) {
         setFilterByToEdit(prevFilter => ({ ...prevFilter, [field]: value }))
     }
 
+    function onStatusChange({ target }) {
+        const { value: status } = target
+        setFilterByToEdit(prev => ({ ...prev, status }))
+    }
     // Optional support for LAZY Filtering with a button
     function onSubmitFilter(ev) {
         ev.preventDefault()
@@ -47,8 +51,12 @@ export function TodoFilter({ filterBy, onSetFilterBy }) {
                 <input value={importance} onChange={handleChange}
                     type="number" placeholder="By Importance" id="importance" name="importance"
                 />
-
-                <button hidden>Set Filter</button>
+                <select onChange={onStatusChange}>
+                    <option value=''>All</option>
+                    <option value='done'>Done</option>
+                    <option value='active'>Active</option>
+                </select>
+                {/* <button hidden>Set Filter</button> */}
             </form>
         </section>
     )

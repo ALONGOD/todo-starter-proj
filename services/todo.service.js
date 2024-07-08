@@ -24,6 +24,10 @@ function query(filterBy = {}) {
                 const regExp = new RegExp(filterBy.txt, 'i')
                 todos = todos.filter(todo => regExp.test(todo.txt))
             }
+            if (filterBy.status) {
+                const isDone = filterBy.status === 'done'
+                todos = todos.filter(todo => todo.isDone === isDone)
+            }
 
             if (filterBy.importance) {
                 todos = todos.filter(todo => todo.importance >= filterBy.importance)
@@ -62,7 +66,7 @@ function getEmptyTodo(txt = '', importance = 5) {
 }
 
 function getDefaultFilter() {
-    return { txt: '', importance: 0 }
+    return { txt: '', importance: 0, status: 'all' }
 }
 
 function getFilterFromSearchParams(searchParams) {
