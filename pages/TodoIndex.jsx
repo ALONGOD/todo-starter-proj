@@ -19,25 +19,26 @@ export function TodoIndex() {
 
     const defaultFilter = todoService.getFilterFromSearchParams(searchParams)
 
-    const [filterBy, setFilterBy] = useState(defaultFilter)
-    // const filterBy= useSelector(state=>state.filterBy)
+    // const [filterBy, setFilterBy] = useState(defaultFilter)
+    const filterBy = useSelector(state => state.filterBy)
 
 
-    // useEffect(()=>
-    //         dispatch({ type: SET_FILTER_BY, filterBy: defaultFilter })
-    // ,[])
+    useEffect(() => {
+        dispatch({ type: SET_FILTER_BY, filterBy: defaultFilter })
+    }
+        , [])
 
 
     useEffect(() => {
         setSearchParams(filterBy)
-        loadTodos()
+        loadTodos(filterBy)
             .catch(err => { showErrorMsg('Cannot load todos') })
     }, [filterBy])
 
-    // function setFilterBy(filterBy) {
-    //     dispatch({ type: SET_FILTER_BY, filterBy })
+    function setFilterBy(filterBy) {
+        dispatch({ type: SET_FILTER_BY, filterBy })
 
-    // }
+    }
 
 
     function onRemoveTodo(todoId) {

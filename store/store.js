@@ -1,4 +1,4 @@
-import { todoService } from "../services/todo.service"
+import { todoService } from "../services/todo.service.js"
 
 const { createStore } = Redux
 
@@ -14,7 +14,7 @@ export const SET_FILTER_BY = 'SET_FILTER_BY'
 const initialState = {
     counter: 100,
     todos: [],
-    // filterBy: todoService.getDefaultFilter()
+    filterBy: todoService.getDefaultFilter(),
 }
 
 function appReducer(state = initialState, action = {}) {
