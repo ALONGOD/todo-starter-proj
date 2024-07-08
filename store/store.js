@@ -11,10 +11,14 @@ export const UPDATE_TODO = 'UPDATE_TODO'
 
 export const SET_FILTER_BY = 'SET_FILTER_BY'
 
+
+export const SET_IS_LOADING = 'SET_IS_LOADING'
+
 const initialState = {
     counter: 100,
     todos: [],
     filterBy: todoService.getDefaultFilter(),
+    isLoading: false,
 }
 
 function appReducer(state = initialState, action = {}) {
@@ -39,6 +43,10 @@ function appReducer(state = initialState, action = {}) {
 
         case SET_FILTER_BY:
             return { ...state, filterBy: action.filterBy }
+
+
+        case SET_IS_LOADING:
+            return { ...state, isLoading: action.isLoading }
 
 
 
