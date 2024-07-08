@@ -43,9 +43,11 @@ export function TodoIndex() {
 
 
     function onRemoveTodo(todoId) {
-        removeTodo(todoId)
-            .then(() => { showSuccessMsg(`Todo removed`) })
-            .catch(err => { showErrorMsg('Cannot remove todo ' + todoId) })
+        if (confirm('Are you sure you want to remove this todo?')) {
+            removeTodo(todoId)
+                .then(() => { showSuccessMsg(`Todo removed`) })
+                .catch(err => { showErrorMsg('Cannot remove todo ' + todoId) });
+        }
     }
 
     function onToggleTodo(todo) {
