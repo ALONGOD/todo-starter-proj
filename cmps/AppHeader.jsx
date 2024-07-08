@@ -1,6 +1,7 @@
 const { useState } = React
 const { Link, NavLink } = ReactRouterDOM
 const { useNavigate } = ReactRouter
+const { useSelector } = ReactRedux
 
 import { userService } from '../services/user.service.js'
 import { UserMsg } from "./UserMsg.jsx"
@@ -9,9 +10,12 @@ import { showErrorMsg } from '../services/event-bus.service.js'
 
 
 export function AppHeader() {
+    const todos = useSelector(state => state.todos)
+    const totalTodos = todos.length
+    const doneTodos = todos.filter(todo => todo.isDone).length
     const navigate = useNavigate()
     const [user, setUser] = useState(userService.getLoggedinUser())
-    
+
     function onLogout() {
         userService.logout()
             .then(() => {
@@ -48,6 +52,7 @@ export function AppHeader() {
                     <NavLink to="/dashboard" >Dashboard</NavLink>
                 </nav>
             </section>
+            <progress max={totalTodos} value={doneTodos}></progress>
             <UserMsg />
         </header>
     )
