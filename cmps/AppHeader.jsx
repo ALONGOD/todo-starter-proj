@@ -10,7 +10,7 @@ import { showErrorMsg } from '../services/event-bus.service.js'
 
 
 export function AppHeader() {
-    const todos = useSelector(state => state.todos)
+    const todos = useSelector(state => state.todoModule.todos)
     const totalTodos = todos.length
     const doneTodos = todos.filter(todo => todo.isDone).length
     const navigate = useNavigate()

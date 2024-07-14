@@ -1,6 +1,6 @@
-import { todoService } from "../../services/todo.service.js"
+import { todoService } from "../services/todo.service.js"
 
-// const { createStore } = Redux
+const { createStore } = Redux
 
 
 export const INCREMENT = 'INCREMENT'
@@ -21,7 +21,7 @@ const initialState = {
     isLoading: false,
 }
 
-export function todoReducer(state = initialState, action = {}) {
+function appReducer(state = initialState, action = {}) {
     switch (action.type) {
 
         case INCREMENT:
@@ -56,4 +56,4 @@ export function todoReducer(state = initialState, action = {}) {
     }
 }
 
-// export const store = createStore(appReducer)
+export const store = createStore(appReducer)
