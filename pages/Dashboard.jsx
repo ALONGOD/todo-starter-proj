@@ -3,7 +3,6 @@ import {Chart} from '../cmps/Chart.jsx'
 import { todoService } from '../services/todo.service.js'
 
 
-
 export function Dashboard() {
 
     const [todos, setTodos] = useState([])
